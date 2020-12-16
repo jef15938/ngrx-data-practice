@@ -1,0 +1,19 @@
+<div class="container-fluid border p-2 mt-3">
+  <div class="row">
+    <div class="col-md-12">
+      <p>Todos list here</p>
+      <div>
+        <button class="btn btn-sm btn-danger rounded-0" (click)="onRemoveAll()">removeAll</button>
+      </div>
+      <div>
+        <button class="btn btn-sm btn-danger rounded-0" (click)="onUndoAll()">undoAll</button>
+      </div>
+      <ul class="list-group">
+        <li class="list-group-item d-flex" *ngFor="let todo of todos$ | async">
+          <span class="flex-grow-1">{{todo.title}}</span>
+          <button class="btn btn-sm btn-danger rounded-0" (click)="onDeleteClickHandler(todo.id)">-</button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

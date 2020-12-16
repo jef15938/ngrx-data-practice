@@ -1,0 +1,18 @@
+<div class="app-container border p-4">
+  <div class="text-center w-100 m-2">
+    <h4>To do list app :)</h4>
+  </div>
+  <div class="border w-100 d-flex border-bottom">
+    <ul class="nav nav-pills">
+      <li class="nav-item">
+        <a class="nav-link rounded-0" [routerLink]="['todos']" routerLinkActive="active" >All to-dos</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link rounded-0" [routerLink]="['add']" routerLinkActive="active">New to-do</a>
+      </li>
+    </ul>
+  </div>
+  <div>
+    <router-outlet></router-outlet>
+  </div>
+</div>
