@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { Todo } from '../todo';
 import { State, Store } from '@ngrx/store';
 import { TodoService } from '../todo.service';
-import { ChangeStateMap, ChangeType, EntityActionFactory, EntityOp, DefaultDataService, ofEntityType, ofEntityOp } from '@ngrx/data';
+import { ChangeStateMap, ChangeType, EntityActionFactory, EntityOp, DefaultDataService, ofEntityType, ofEntityOp, MergeStrategy } from '@ngrx/data';
 import { filter, map, switchMap, take, tap } from 'rxjs/operators';
 
 @Component({
@@ -28,19 +28,19 @@ export class TodosComponent implements OnInit {
     this.fetchTodos();
     this.todos$ = this.todoService.entities$.pipe(tap(x => console.log('123', x)));
 
-    this.todoService.entityActions$.pipe(
+    // this.todoService.entityActions$.pipe(
 
-      ofEntityType('Todo'),
-      ofEntityOp(EntityOp.REMOVE_ALL),
+    //   ofEntityType('Todo'),
+    //   ofEntityOp(EntityOp.REMOVE_ALL),
 
-    ).subscribe(x => {
-      this.onUndoAll();
-    });
+    // ).subscribe(x => {
+    //   this.onUndoAll();
+    // });
   }
 
   onDeleteClickHandler(id: string): void {
     console.log('onDeleteClickHandler id: ', id);
-    this.todoService.delete(id); // server
+    this.todoService.delete(id, { mergeStrategy: MergeStrategy.PreserveChanges }); // server
 
     // this.todoService.errors$.pipe(
 

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl } from "@angular/forms";
+import { EntityActionFactory, EntityOp, MergeStrategy } from '@ngrx/data';
 import { Store } from '@ngrx/store';
 import { Todo } from '../todo';
 import { TodoService } from '../todo.service';
@@ -31,8 +32,7 @@ export class NewTodoComponent implements OnInit {
       title: this.todoForm.get('title').value
     };
     console.log('onTodoFormSubmit todo: ', todo);
-    this.todoService.add(todo); // server
-    // this.todoService.addOneToCache(todo);
+    this.todoService.add(todo, { mergeStrategy: MergeStrategy.OverwriteChanges }); // server
     this.todoForm.reset();
   }
 }
